@@ -1,7 +1,7 @@
 {
   "name": "jean-list",
   "version": "0.0.4",
-  "description": "Provides basic list functionality",
+  "description": "Provides a basic list implementation for maintaining objects for use as AMD module",
   "main": "List.js",
   "scripts": {
     "test": "open spec/spec-runner.html in browser"
@@ -15,5 +15,9 @@
   "dependencies": {
     "almond": "^0.3.3",
     "jean-type-check": "0.0.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/je-an/jean-list.git"
   }
 }
