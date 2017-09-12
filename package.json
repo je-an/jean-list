@@ -1,0 +1,19 @@
+{
+  "name": "jean-list",
+  "version": "0.0.4",
+  "description": "Provides basic list functionality",
+  "main": "List.js",
+  "scripts": {
+    "test": "open spec/spec-runner.html in browser"
+  },
+  "keywords": [
+    "list",
+    "collection"
+  ],
+  "author": "Jeremias Andris",
+  "license": "MIT",
+  "dependencies": {
+    "almond": "^0.3.3",
+    "jean-type-check": "0.0.3"
+  }
+}
