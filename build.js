@@ -2,7 +2,8 @@
     baseUrl: '.',
     out: 'dist/List.js',
     optimize: 'none',
-    include: ["node_modules/almond/almond", "src/List"],
+    name: "node_modules/jean-amd/dist/jean-amd.min",
+    include: ["src/List"],
     wrap: {
         start: 
         "(function (root, factory) { \n" +

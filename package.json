@@ -13,8 +13,8 @@
   "author": "Jeremias Andris",
   "license": "MIT",
   "dependencies": {
-    "almond": "^0.3.3",
-    "jean-type-check": "0.0.3"
+    "jean-amd": "0.0.4",
+    "jean-type-check": "0.0.5"
   },
   "repository": {
     "type": "git",

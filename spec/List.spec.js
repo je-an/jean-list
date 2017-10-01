@@ -120,7 +120,7 @@ define(["List"], function (List) {
             it("TODO: Add element to list which not contains id property | EXPECTATION: element not added to list", function () {
                 expect(list.addElement(wrongIdElement)).toBe(false);
             });
-            it("TODO: Add element to list which contains duplicate id value | EXPECTATION: element not added to list", function () {
+            it("TODO: Add element with duplicate id to list with active duplicate check | EXPECTATION: element not added to list", function () {
                 var l = new List({
                     idProperty: "name",
                     checkDuplicates: true
@@ -129,6 +129,16 @@ define(["List"], function (List) {
                 l.addElement(testElementTwo);
                 l.addElement(testElementThree);
                 expect(l.addElement(testElementOne)).toBe(false);
+            });
+            it("TODO: Add element with duplicate id to list without active duplicate check | EXPECTATION: element added to list", function(){
+                var l = new List({
+                    idProperty: "name",
+                    checkDuplicates: false
+                });
+                l.addElement(testElementOne);
+                l.addElement(testElementTwo);
+                l.addElement(testElementThree);
+                expect(l.addElement(testElementOne)).toBe(true);
             });
             it("TODO: Pass something else instead of object | EXPECTATION: Throws type error", function () {
                 try {
@@ -190,7 +200,7 @@ define(["List"], function (List) {
                 var e = list.getElement("1");
                 expect(e.value === 2).toBe(true);
             });
-            it("TODO: Pass an object which not contains id property| EXPECTATION: Returns false", function () {
+            it("TODO: Pass an object which not contains id property | EXPECTATION: Returns false", function () {
                 list.addElement({ name: "1", value: 1 });
                 expect(list.updateElement({ value: 2 })).toBe(false);
             });
