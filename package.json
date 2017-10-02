@@ -1,6 +1,6 @@
 {
   "name": "jean-list",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Provides a basic list implementation for maintaining objects for use as AMD module",
   "main": "dist/jean-list.js",
   "scripts": {
@@ -13,7 +13,7 @@
   "author": "Jeremias Andris",
   "license": "MIT",
   "dependencies": {
-    "jean-amd": "0.0.4",
+    "jean-amd": "0.0.5",
     "jean-type-check": "0.0.5"
   },
   "repository": {
