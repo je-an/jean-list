@@ -1,8 +1,8 @@
 ({
     baseUrl: '.',
-    out: 'dist/List.js',
-    optimize: 'none',
-    name: "node_modules/jean-amd/dist/jean-amd.min",
+    out: 'dist/jean-list.js',
+    optimize: 'uglify2',
+    name: "node_modules/jean-amd/dist/jean-amd",
     include: ["src/List"],
     wrap: {
         start: 

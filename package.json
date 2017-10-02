@@ -1,8 +1,8 @@
 {
   "name": "jean-list",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Provides a basic list implementation for maintaining objects for use as AMD module",
-  "main": "List.js",
+  "main": "dist/jean-list.js",
   "scripts": {
     "test": "open spec/spec-runner.html in browser"
   },
