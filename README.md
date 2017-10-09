@@ -1,28 +1,35 @@
 ## Description
 
-Provides a basic list implementation for maintaining objects for use as AMD module
+Provides a basic list implementation for maintaining objects 
+
+## Support
+Supports both CommonJS and AMD eco system. If there is no loader, List is registered as a browser variable.
 
 ## Code Example
-
+- Use it as browser variable
 ```javascript
-require(["path/to/List"], function(List){
     // Pass identifier key name as a string to constructor
     var list = new List({
         idProperty: "name"
     });
-    
     // Add some objects to the list
     list.addElement({ name: "firstObject" });
     list.addElement({ name: "secondObject" });
     list.addElement({ name: "thirdObject" });
-    
     // Get an element from the list
     var firstObject = list.getElement("firstObject");
+```
+- Use it with require.js
+```javascript
+require(["path/to/List"], function(List){
+    // Work with List
 });
 ```
-
+- Use it with node.js
+```javascript
+var List = require("jean-list");
+```
 ## Installation
-
 
 `npm install jean-list --save --legacy-bundling`
 
