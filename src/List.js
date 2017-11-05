@@ -27,6 +27,13 @@ define(["TypeCheck"], function (TypeCheck) {
             this._list = [];
         }
         this._checkDuplicates = options.checkDuplicates ? options.checkDuplicates : false;
+        Object.defineProperty(this, 'length', {
+            get: function () { // jscs:ignore
+                return this._list.length;
+            },
+            configurable: true,
+            enumerable: true
+        });
     };
     /**   
      * Add an element to the list
@@ -165,6 +172,13 @@ define(["TypeCheck"], function (TypeCheck) {
         for (var i = 0; i < length; i++) {
             callback(list[i], i);
         }
+    };
+    /**
+     * Provides an array with the values from the list
+     * @returns {Object[]} - list values
+     */
+    List.prototype.toArray = function () {
+        return this._list;
     };
     return List;
 });

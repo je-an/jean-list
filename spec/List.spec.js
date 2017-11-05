@@ -21,29 +21,6 @@ define(["List"], function (List) {
         beforeEach(function () {
             list = new List({ idProperty: "name" });
         });
-        describe("List", function () {
-            it("Members and methods are available", function () {
-                // Member
-                expect(list._list).not.toBeUndefined();
-                expect(list._idProperty).not.toBeUndefined();
-
-                // Prüft, ob alle Member vorhanden sind
-                var memberCount = Object.keys(list).length;
-                expect(memberCount).toEqual(numberOfMembers);
-
-                // Methoden
-                expect(list.addElement).not.toBeUndefined();
-                expect(list.getElement).not.toBeUndefined();
-                expect(list.updateElement).not.toBeUndefined();
-                expect(list.deleteElement).not.toBeUndefined();
-                expect(list.deleteAll).not.toBeUndefined();
-                expect(list.forEachElement).not.toBeUndefined();
-
-                // Prüft ob die 
-                var methodCount = Object.keys(Object.getPrototypeOf(list)).length;
-                expect(methodCount).toEqual(numberOfMethods);
-            });
-        });
         describe("List Constructor", function () {
             it("Is initialised correctly, if valid options are passed", function () {
                 var l = new List({
@@ -74,7 +51,7 @@ define(["List"], function (List) {
                 });
                 expect(l._checkDuplicates).toBe(false);
             });
-            it("Duplicate cheching is disabled, if it is not set explicitly", function () {
+            it("Duplicate checking is disabled, if it is not set explicitly", function () {
                 var l = new List({
                     idProperty: "name"
                 });
@@ -116,7 +93,7 @@ define(["List"], function (List) {
                 expect(list.addElement(testElementThree)).toBe(true);
                 expect(list._list.length === 3).toBe(true);
             });
-            it("Adds element to list, if its id is already in the list and duplicate check is disabled", function(){
+            it("Adds element to list, if its id is already in the list and duplicate check is disabled", function () {
                 var l = new List({
                     idProperty: "name",
                     checkDuplicates: false
@@ -303,6 +280,42 @@ define(["List"], function (List) {
                     expect(e instanceof TypeError).toBe(true);
                 }
             });
+        });
+        describe("List.prototype.toArray", function () {
+            beforeEach(function () {
+                list = new List({ idProperty: "name" });
+            });
+            it("Provides an array, which contains the values from the list", function(){
+                list.addElement({ name: "test1" });
+                list.addElement({ name: "test2" });
+                list.addElement({ name: "test3" });
+                var a = list.toArray();
+                expect(Array.isArray(a)).toBe(true);
+                expect(a.length).toEqual(3);
+                expect(a[0].name).toEqual("test1");
+                expect(a[1].name).toEqual("test2");
+                expect(a[2].name).toEqual("test3");
+            });
+        });
+        describe("After instantiation,", function () {
+            describe("when values are added,", function () {
+                beforeEach(function () {
+                    list = new List({ idProperty: "name" });
+                });
+                it("property <length> provides the amount of elements within the list", function () {
+                    list.addElement({ name: "test" });
+                    expect(list.length).toEqual(1);
+                    list.addElement({ name: "test1" });
+                    list.addElement({ name: "test2" });
+                    list.addElement({ name: "test3" });
+                    expect(list.length).toEqual(4);
+                    list.deleteElement("test1");
+                    expect(list.length).toEqual(3);
+                    list.deleteElement("test2");
+                    list.deleteElement("test3");
+                    expect(list.length).toEqual(1);
+                });
+            })
         });
     });
 });
