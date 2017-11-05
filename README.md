@@ -42,6 +42,10 @@ var List = require("jean-list");
 - **checkDuplicates**: `Boolean` - `optional` - If true, there will be a check processed, if added element is already in the list. Beware, that this options could drop the performance.
 - **list**: `Object[]` - `optional` - List which shall be maintained
 
+### List.length
+
+Provides the number of elements, which are maintained by the list
+
 ### List.addElement(element) 
 
 Add an element to the list
@@ -107,6 +111,13 @@ list.forEachElement(function(element,index){
      // Work with element and index
 });
 ```
+
+### List.toArray() 
+
+Provides an array, which contains the maintained elements
+
+**Returns**
+- `Object[]` - values which are maintained by the list
 
 ## Tests
 
