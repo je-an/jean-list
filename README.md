@@ -84,7 +84,17 @@ Deletes an element from the list based on its id
 - **id**: `String` - Id of the element
 
 **Returns**
-- `Object | null` - The element or null if it is not in
+- `Boolean` - True, if the element is deleted, false otherwise 
+
+### List.containsElement(id) 
+
+Checks, if an element is part of the list
+
+**Parameters**
+- **id**: `String` - Id of the element which shall be checked
+
+**Returns**
+- `Boolean` - True, if the element is part of the collection, false otherwise
 
 ### List.deleteAll() 
 

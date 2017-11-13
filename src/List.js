@@ -120,7 +120,7 @@ define(["TypeCheck"], function (TypeCheck) {
      */
     List.prototype.deleteElement = function (id) {
         if (!TypeCheck.isString(id)) {
-            throw new TypeError("id ist not from type string");
+            throw new TypeError("id ist not a string");
         }
         var list = this._list, length = list.length, idProperty = this._idProperty;
         for (var i = 0; i < length; i++) {
@@ -132,6 +132,20 @@ define(["TypeCheck"], function (TypeCheck) {
             }
         }
         return false;
+    };
+    /**
+     * Checks, if an element is part of the list
+     * @public
+     * @memberof List
+     * @throws {TypeError} - If id is not a string
+     * @param {String} id - Id of the element which shall be checked
+     * @returns {Boolean} - True if the element is part of the collection, false otherwise
+     */
+    List.prototype.containsElement = function (id) {
+        if (!TypeCheck.isString(id)) {
+            throw new TypeError("id ist not a string");
+        }
+        return TypeCheck.isDefined(this.getElement(id)) ? true : false;
     };
     /**
      * Removes all elements from the list

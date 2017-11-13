@@ -232,6 +232,23 @@ define(["List"], function (List) {
                 }
             });
         });
+        describe("List.prototype.containsElement", function () {
+            it("Provides true, if element is part of the list", function () {
+                list.addElement(testElementOne);
+                expect(list.containsElement(testElementOne.name)).toBe(true);
+            });
+            it("Provides false, if element is not part of the list", function () {
+                list.addElement(testElementOne);
+                expect(list.deleteElement(testElementTwo.name)).toBe(false);
+            });
+            it("Throws error, if not a string is passed as id", function () {
+                try {
+                    var elem = list.containsElement(123); // jshint ignore:line
+                } catch (e) {
+                    expect(e instanceof TypeError).toBe(true);
+                }
+            });
+        });
         describe("List.prototype.deleteAll", function () {
             it("Deletes all elements from the list", function () {
                 list.addElement(testElementOne);
