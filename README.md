@@ -91,7 +91,7 @@ Deletes an element from the list based on its id
 Checks, if an element is part of the list
 
 **Parameters**
-- **id**: `String` - Id of the element which shall be checked
+- **id**: `String` - Id of the element
 
 **Returns**
 - `Boolean` - True, if the element is part of the collection, false otherwise
