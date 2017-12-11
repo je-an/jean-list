@@ -1,8 +1,6 @@
 define(["List"], function (List) {
     describe('List.spec.js', function () {
         var list = {},
-            numberOfMembers = 3,
-            numberOfMethods = 6,
             testElementOne = {
                 name: "elementOne",
                 index: 0
@@ -302,7 +300,7 @@ define(["List"], function (List) {
             beforeEach(function () {
                 list = new List({ idProperty: "name" });
             });
-            it("Provides an array, which contains the values from the list", function(){
+            it("Provides an array, which contains the values from the list", function () {
                 list.addElement({ name: "test1" });
                 list.addElement({ name: "test2" });
                 list.addElement({ name: "test3" });
@@ -312,6 +310,28 @@ define(["List"], function (List) {
                 expect(a[0].name).toEqual("test1");
                 expect(a[1].name).toEqual("test2");
                 expect(a[2].name).toEqual("test3");
+            });
+        });
+        describe("List.prototype.indexOf", function () {
+            beforeEach(function () {
+                list = new List({ idProperty: "name" });
+            });
+            it("Provides index of element within the list", function () {
+                var one = { name: "test1" }, two = { name: "test2" }, three = { name: "test3" };
+                list.addElement(one);
+                list.addElement(two);
+                list.addElement(three);
+                expect(list.indexOf(one)).toEqual(0);
+                expect(list.indexOf(two)).toEqual(1);
+                expect(list.indexOf(three)).toEqual(2);
+            });
+            it("provides -1 if element is not within the list", function () {
+                var one = { name: "test1" }, two = { name: "test2" }, three = { name: "test3" };
+                list.addElement(one);
+                list.addElement(two);
+                expect(list.indexOf(one)).toEqual(0);
+                expect(list.indexOf(two)).toEqual(1);
+                expect(list.indexOf(three)).toEqual(-1);
             });
         });
         describe("After instantiation,", function () {

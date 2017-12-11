@@ -9,7 +9,7 @@ define(["TypeCheck"], function (TypeCheck) {
      * @param {Boolean} [options.checkDuplicates=false] - If true, there will be a check processed, if 
      *                                                    added elements is already in the list. Beware, that
      *                                                    this options could drop the performance.
-     * @param {Object[]} [options.list=[]] - Array, which should be maintained 
+     * @param {Object[]} [options.list=[]] - Array, which shall be maintained 
      */
     var List = function (options) {
         if (TypeCheck.isString(options.idProperty)) {
@@ -193,6 +193,15 @@ define(["TypeCheck"], function (TypeCheck) {
      */
     List.prototype.toArray = function () {
         return this._list;
+    };
+    /**
+     * Provides the index of the element, if it is part of the list
+     * @param {Object} o - Object for which the index shall be retrieved
+     * @returns {Number} - index of the element within the list or -1 if the element is not
+     *                     part of the list.  
+     */
+    List.prototype.indexOf = function (o) {
+        return this._list.indexOf(o);
     };
     return List;
 });

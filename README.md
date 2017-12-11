@@ -129,6 +129,16 @@ Provides an array, which contains the maintained elements
 **Returns**
 - `Object[]` - values which are maintained by the list
 
+### List.indexOf(o) 
+
+Provides the index of the element, if it is part of the list
+
+**Parameters**
+- **o**: `Object` - Object for which the index shall be retrieved
+
+**Returns**
+- `Number` - index of the element within the list or -1 if the element is not part of the list.
+
 ## Tests
 
 Open spec/spec-runner.html in browser to see the test cases.
