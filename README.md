@@ -147,9 +147,6 @@ Moves the object behind index by the value of amount within the list
 - **currentIndex**: `Number` - Index of object, which shall be moved
 - **newIndex**: `Number` - Moves the object behind currentIndex to newIndex
 
-**Returns**
-- `Number` - index of the element within the list or -1 if the element is not part of the list.
-
 ## Tests
 
 Open spec/spec-runner.html in browser to see the test cases.
