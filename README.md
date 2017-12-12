@@ -144,8 +144,8 @@ Provides the index of the element, if it is part of the list
 Moves the object behind index by the value of amount within the list
 
 **Parameters**
-- **index**: `Number` - Index of object, which shall be moved
-- **amount**: `Number` - Positive values increase the new index of the object, negative values decrease it.
+- **currentIndex**: `Number` - Index of object, which shall be moved
+- **newIndex**: `Number` - Moves the object behind currentIndex to newIndex
 
 **Returns**
 - `Number` - index of the element within the list or -1 if the element is not part of the list.

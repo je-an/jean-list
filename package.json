@@ -1,6 +1,6 @@
 {
   "name": "jean-list",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Provides a basic list implementation for maintaining objects for use as AMD module",
   "main": "dist/jean-list.js",
   "scripts": {
