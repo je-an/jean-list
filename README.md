@@ -139,9 +139,25 @@ Provides the index of the element, if it is part of the list
 **Returns**
 - `Number` - index of the element within the list or -1 if the element is not part of the list.
 
+### List.moveIndex(newIndex, oldIndex) 
+
+Moves the object behind index by the value of amount within the list
+
+**Parameters**
+- **index**: `Number` - Index of object, which shall be moved
+- **amount**: `Number` - Positive values increase the new index of the object, negative values decrease it.
+
+**Returns**
+- `Number` - index of the element within the list or -1 if the element is not part of the list.
+
 ## Tests
 
 Open spec/spec-runner.html in browser to see the test cases.
+
+## Credit
+
+The `moveIndex` method is taken from [Reids](https://stackoverflow.com/users/236139/reid)
+ accepted answer from the [most popular stackoverflow post](https://stackoverflow.com/questions/5306680/move-an-array-element-from-one-array-position-to-another/5306832#comment59437131_5306832) on this topic. All credit goes to [Reid](https://stackoverflow.com/users/236139/reid). Only adjustments have been made, to make it work with this module.
 
 ## License
 

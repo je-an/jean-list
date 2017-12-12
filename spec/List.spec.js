@@ -325,13 +325,80 @@ define(["List"], function (List) {
                 expect(list.indexOf(two)).toEqual(1);
                 expect(list.indexOf(three)).toEqual(2);
             });
-            it("provides -1 if element is not within the list", function () {
+            it("Provides -1 if element is not within the list", function () {
                 var one = { name: "test1" }, two = { name: "test2" }, three = { name: "test3" };
                 list.addElement(one);
                 list.addElement(two);
                 expect(list.indexOf(one)).toEqual(0);
                 expect(list.indexOf(two)).toEqual(1);
                 expect(list.indexOf(three)).toEqual(-1);
+            });
+            it("Throws TypeError, if provided element is not an object", function () {
+                try {
+                    list.indexOf(1);
+                } catch (e) {
+                    expect(e instanceof TypeError).toBe(true);
+                }
+            });
+        });
+        describe("List.prototype.moveIndex", function () {
+            beforeEach(function () {
+                list = new List({ idProperty: "name" });
+            });
+            it("Moves element within the list", function () {
+                var one = { name: "test1" }, two = { name: "test2" }, three = { name: "test3" },
+                    four = { name: "test4" }, five = { name: "test5" };
+                list.addElement(one);
+                list.addElement(two);
+                list.addElement(three);
+                list.addElement(four);
+                list.addElement(five);
+                list.moveIndex(3, 1);
+
+                var arr = list.toArray();
+                expect(arr[1].name).toEqual("test4");
+            });
+            it("Throws TypeError, If currentIndex is not a number", function () {
+                try {
+                    list.moveIndex("1", 2);
+                } catch (e) {
+                    expect(e instanceof TypeError).toBe(true);
+                }
+            });
+            it("Throws TypeError, If newIndex is not a number", function () {
+                try {
+                    list.moveIndex(1, "2");
+                } catch (e) {
+                    expect(e instanceof TypeError).toBe(true);
+                }
+            });
+            it("Throws Error, If currentIndex is negative", function () {
+                try {
+                    list.moveIndex(-1, 2);
+                } catch (e) {
+                    expect(e instanceof Error).toBe(true);
+                }
+            });
+            it("Throws Error, If newIndex is not a number", function () {
+                try {
+                    list.moveIndex(1, -1);
+                } catch (e) {
+                    expect(e instanceof Error).toBe(true);
+                }
+            });
+            it("Throws Error, If currentIndex is bigger then list length", function () {
+                try {
+                    list.moveIndex(900, 2);
+                } catch (e) {
+                    expect(e instanceof Error).toBe(true);
+                }
+            });
+            it("Throws Error, If newIndex is bigger then list length", function () {
+                try {
+                    list.moveIndex(1, 900);
+                } catch (e) {
+                    expect(e instanceof Error).toBe(true);
+                }
             });
         });
         describe("After instantiation,", function () {

@@ -196,12 +196,42 @@ define(["TypeCheck"], function (TypeCheck) {
     };
     /**
      * Provides the index of the element, if it is part of the list
+     * @throws {TypeError} - If o is not an object
      * @param {Object} o - Object for which the index shall be retrieved
      * @returns {Number} - index of the element within the list or -1 if the element is not
      *                     part of the list.  
      */
     List.prototype.indexOf = function (o) {
+        if (!TypeCheck.isObject(o)) {
+            throw new TypeError("o is not an object");
+        }
         return this._list.indexOf(o);
+    };
+    /**
+     * Moves the element of the index to the position of amount.
+     * @throws {TypeError} - If currentIndex or newIndex are not numbers
+     * @throws {Error} - If currentIndex or newIndex are not positive
+     * @throws {Error} - If currentIndex or newIndex is bigger then list length
+     * @param {Number} currentIndex - Index of object, which shall be moved
+     * @param {Number} newIndex - Moves the object behind currentIndex to newIndex
+     */
+    List.prototype.moveIndex = function (currentIndex, newIndex) {
+        if (!TypeCheck.isNumber(currentIndex) || !TypeCheck.isNumber(newIndex)) {
+            throw new TypeError("currentIndex or newIndex are not numbers");
+        }
+        if (currentIndex < 0 || newIndex < 0) {
+            throw new Error("currentIndex/newIndex are must be positive");
+        }
+        if (currentIndex > (this.length - 1) || newIndex > (this.length - 1)) {
+            throw new Error("currentIndex or newIndex is bigger then list length");
+        }
+        if (newIndex >= this.length) {
+            var k = newIndex - this.length;
+            while ((k--) + 1) {
+                this._list.push(undefined);
+            }
+        }
+        this._list.splice(newIndex, 0, this._list.splice(currentIndex, 1)[0]);
     };
     return List;
 });
