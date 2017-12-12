@@ -208,7 +208,7 @@ define(["TypeCheck"], function (TypeCheck) {
         return this._list.indexOf(o);
     };
     /**
-     * Moves the element of the index to the position of amount.
+     * Moves the element of currentIndex to the position of newIndex.
      * @throws {TypeError} - If currentIndex or newIndex are not numbers
      * @throws {Error} - If currentIndex or newIndex are not positive
      * @throws {Error} - If currentIndex or newIndex is bigger then list length
