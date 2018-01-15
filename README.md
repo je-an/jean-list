@@ -139,9 +139,9 @@ Provides the index of the element, if it is part of the list
 **Returns**
 - `Number` - index of the element within the list or -1 if the element is not part of the list.
 
-### List.moveIndex(newIndex, oldIndex) 
+### List.moveIndex(currentIndex, newIndex) 
 
-Moves the object behind index by the value of amount within the list
+Moves the object currentIndex to newIndex
 
 **Parameters**
 - **currentIndex**: `Number` - Index of object, which shall be moved
