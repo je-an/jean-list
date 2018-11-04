@@ -35,6 +35,11 @@ define(["TypeCheck"], function (TypeCheck) {
             enumerable: true
         });
     };
+    /** @enum */
+    List.sortType = List.prototype.sortType = {
+        ASCENDING: "ascending",
+        DESCENDING: "descending"
+    };
     /**   
      * Add an element to the list
      * @public
@@ -232,6 +237,56 @@ define(["TypeCheck"], function (TypeCheck) {
             }
         }
         this._list.splice(newIndex, 0, this._list.splice(currentIndex, 1)[0]);
+    };
+    /**
+     * Sorts the elements regarding to the provided compare function
+     * @throws {TypeError} - If fn is not a function
+     * @param  {Function} fn - the function which will be used for sorting
+     *                         if return value < 0 -> a is placed before b
+     *                         if return value = 0 -> nothing is changed
+     *                         if return value > 0 -> b is placed before a
+     * @returns {Boolean} - True if sorting is successful, Exception otherwise
+     */
+    List.prototype.sort = function (fn) {
+        if (TypeCheck.isFunction(fn)) {
+            this._list.sort(fn);
+        } else {
+            throw new TypeError("fn is not a function");
+        }
+        return true;
+    };
+    /**
+     * Sorts the objects within by the number of a provided property
+     * @throws {TypeError} - If propertyName or sortType is invalid
+     * @throws {TypeError} - If propertyName is not a member of the objects within the list
+     * @param {String} propertyName - the name of the property which shall be used for sorting
+     * @param {List.sortType} sortType - the sort type - ascending or descending
+     * @returns {Boolean} - True if sorting is successful, exception otherwise
+     */
+    List.prototype.sortByNumber = function (propertyName, sortType) {
+        var instance = this;
+        if (TypeCheck.isString(propertyName) && TypeCheck.isEnumValue(sortType, this.sortType)) {
+            this._list.sort(function (a, b) {
+                if (a[propertyName] < b[propertyName]) {
+                    if (sortType === instance.sortType.ASCENDING) {
+                        return -1;
+                    } else if (sortType === instance.sortType.DESCENDING) {
+                        return 1;
+                    }
+                }
+                if (a[propertyName] > b[propertyName]) {
+                    if (sortType === instance.sortType.ASCENDING) {
+                        return 1;
+                    } else if (sortType === instance.sortType.DESCENDING) {
+                        return -1;
+                    }
+                }
+                return 0;
+            });
+        } else {
+            throw new TypeError("propertyName or sortType is invalid");
+        }
+        return true;
     };
     return List;
 });

@@ -401,6 +401,135 @@ define(["List"], function (List) {
                 }
             });
         });
+        describe("List.prototype.sort", function () {
+            beforeEach(function () {
+                list = new List({ idProperty: "id" });
+            });
+            it("sorts the array correctly", function () {
+                var one = { id: "1", no: 1 },
+                    two = { id: "2", no: 2 },
+                    three = { id: "3", no: 3 },
+                    four = { id: "4", no: 4 },
+                    five = { id: "5", no: 5 };
+
+                list.addElement(one);
+                list.addElement(three);
+                list.addElement(four);
+                list.addElement(five);
+                list.addElement(two);
+
+                var result = list.sort(function (a, b) {
+                    if (a.no < b.no) {
+                        return -1;
+                    }
+                    if (a.no > b.no) {
+                        return 1;
+                    }
+                    return 0;
+                });
+
+
+
+                var a = [], isSorted = true;
+
+                list.forEachElement(function (o, i) {
+                    if (o.no === i + 1) {
+                        a.push(true);
+                    } else {
+                        a.push(false);
+                    }
+                });
+                for (var i = 0; i < a.length; i++) {
+                    if (a[i] === false) {
+                        isSorted = false;
+                    }
+                }
+                expect(isSorted).toBe(true);
+            });
+
+            it("Throws TypeError, If fn is not a function", function () {
+                try {
+                    list.sort(undefined);
+                } catch (e) {
+                    expect(e instanceof TypeError).toBe(true);
+                }
+            });
+        });
+        describe("List.prototype.sort", function () {
+            beforeEach(function () {
+                list = new List({ idProperty: "id" });
+            });
+            it("sorts the array ascending", function () {
+                var one = { id: "1", no: 1 },
+                    two = { id: "2", no: 2 },
+                    three = { id: "3", no: 3 },
+                    four = { id: "4", no: 4 },
+                    five = { id: "5", no: 5 };
+
+                list.addElement(one);
+                list.addElement(three);
+                list.addElement(four);
+                list.addElement(five);
+                list.addElement(two);
+
+                list.sortByNumber("no", list.sortType.ASCENDING);
+
+                var a = [], isSorted = true;
+
+                list.forEachElement(function (o, i) {
+                    if (o.no === i + 1) {
+                        a.push(true);
+                    } else {
+                        a.push(false);
+                    }
+                });
+                for (var i = 0; i < a.length; i++) {
+                    if (a[i] === false) {
+                        isSorted = false;
+                    }
+                }
+                expect(isSorted).toBe(true);
+            });
+            it("sorts the array descending", function () {
+                var one = { id: "1", no: 1 },
+                    two = { id: "2", no: 2 },
+                    three = { id: "3", no: 3 },
+                    four = { id: "4", no: 4 },
+                    five = { id: "5", no: 5 };
+
+                list.addElement(one);
+                list.addElement(three);
+                list.addElement(four);
+                list.addElement(five);
+                list.addElement(two);
+
+                list.sortByNumber("no", list.sortType.DESCENDING);
+
+                var a = [], isSorted = true, length = list.length;
+
+                list.forEachElement(function (o, i) {
+                    if (o.no === length) {
+                        a.push(true);
+                    } else {
+                        a.push(false);
+                    }
+                    length--;
+                });
+                for (var i = 0; i < a.length; i++) {
+                    if (a[i] === false) {
+                        isSorted = false;
+                    }
+                }
+                expect(isSorted).toBe(true);
+            });
+            it("Throws TypeError, If parameters are invalid", function () {
+                try {
+                    list.sort(undefined, undefined);
+                } catch (e) {
+                    expect(e instanceof TypeError).toBe(true);
+                }
+            });
+        });
         describe("After instantiation,", function () {
             describe("when values are added,", function () {
                 beforeEach(function () {

@@ -42,6 +42,12 @@ var List = require("jean-list");
 - **checkDuplicates**: `Boolean` - `optional` - If true, there will be a check processed, if added element is already in the list. Beware, that this options could drop the performance.
 - **list**: `Object[]` - `optional` - List which shall be maintained
 
+### List.sortType
+
+- **ASCENDING**: `String` - Sorts the elements ascending
+- **DESCENDING**: `String` - Sorts the elements descending
+
+
 ### List.length
 
 Provides the number of elements, which are maintained by the list
@@ -146,6 +152,27 @@ Moves the object currentIndex to newIndex
 **Parameters**
 - **currentIndex**: `Number` - Index of object, which shall be moved
 - **newIndex**: `Number` - Moves the object behind currentIndex to newIndex
+
+### List.sort(fn) 
+
+Sorts the elements regarding to the provided compare function
+
+**Parameters**
+- **fn**: `Function` - the function which will be used for sorting, see Array.prototype.sort()
+
+**Returns**
+- `Boolean` - True if sorting is successful, Exception otherwise
+
+### List.sortByNumber(propertyName, sortType) 
+
+Sorts the objects within by the number of a provided property
+
+**Parameters**
+- **propertyName**: `String` - name of the property which shall be used for sorting
+- **sortType**: `List.sortType` - the sort type - ascending or descending
+
+**Returns**
+- `Boolean` - True if sorting is successful, Exception otherwise
 
 ## Tests
 
