@@ -71,6 +71,36 @@ define(["TypeCheck"], function (TypeCheck) {
         return isAdded;
     };
     /**
+     * Prepends an element to the list
+     * @public
+     * @memberof List
+    * @throws {TypeError} - if element is not an object
+     * @param {Object} element - element, which shall be prepended to the list
+     * @returns {Boolean} - True, if the element is prepended
+     */
+    List.prototype.prependElement = function (element) {
+        if (!TypeCheck.isObject(element)) {
+            throw new TypeError("element is not a object");
+        }
+        var isPrepended = false, isDuplicate = false, idProperty = this._idProperty;
+        if (element.hasOwnProperty(this._idProperty)) {
+            if (this._checkDuplicates) {
+                this.forEachElement(function (o, i) {
+                    if (element[idProperty] === o[idProperty]) {
+                        isDuplicate = true;
+                        isPrepended = false;
+                        return false;
+                    }
+                });
+            }
+            if (!isDuplicate) {
+                this._list.unshift(element);
+                isPrepended = true;
+            }
+        }
+        return isPrepended;
+    };
+    /**
      * Provides an element from the list based on its id
      * @public
      * @memberof List

@@ -147,6 +147,73 @@ define(["List"], function (List) {
                 }
             });
         });
+        describe("List.prototype.prependElement", function () {
+            it("Prepends element to list", function () {
+                expect(list.prependElement(testElementOne)).toBe(true);
+                expect(list._list.length === 1).toBe(true);
+                expect(list.prependElement(testElementTwo)).toBe(true);
+                expect(list._list.length === 2).toBe(true);
+                expect(list.indexOf(testElementTwo) === 0).toBe(true);
+                expect(list.prependElement(testElementThree)).toBe(true);
+                expect(list._list.length === 3).toBe(true);
+                expect(list.indexOf(testElementThree) === 0).toBe(true);
+            });
+            it("Prepends element to list, if its id is already in the list and duplicate check is disabled", function () {
+                var l = new List({
+                    idProperty: "name",
+                    checkDuplicates: false
+                });
+                l.prependElement(testElementOne);
+                l.prependElement(testElementTwo);
+                l.prependElement(testElementThree);
+                expect(l.prependElement(testElementOne)).toBe(true);
+            });
+            it("Ignores element, if it doesnt contain the right id property", function () {
+                expect(list.prependElement(wrongIdElement)).toBe(false);
+            });
+            it("Ignores element, if its id is already in the list and duplicate check is enabled", function () {
+                var l = new List({
+                    idProperty: "name",
+                    checkDuplicates: true
+                });
+                l.prependElement(testElementOne);
+                l.prependElement(testElementTwo);
+                l.prependElement(testElementThree);
+                expect(l.prependElement(testElementOne)).toBe(false);
+            });
+            it("Throws exception, if something else as an object shall be prepended to the list", function () {
+                try {
+                    list.prependElement("");
+                } catch (e) {
+                    expect(e instanceof TypeError).toBe(true);
+                }
+                try {
+                    list.prependElement(1);
+                } catch (e) {
+                    expect(e instanceof TypeError).toBe(true);
+                }
+                try {
+                    list.prependElement(undefined);
+                } catch (e) {
+                    expect(e instanceof TypeError).toBe(true);
+                }
+                try {
+                    list.prependElement(null);
+                } catch (e) {
+                    expect(e instanceof TypeError).toBe(true);
+                }
+                try {
+                    list.prependElement(function () { });
+                } catch (e) {
+                    expect(e instanceof TypeError).toBe(true);
+                }
+                try {
+                    list.prependElement();
+                } catch (e) {
+                    expect(e instanceof TypeError).toBe(true);
+                }
+            });
+        });
         describe("List.prototype.getElement", function () {
             it("Provides the requested element", function () {
                 list.addElement(testElementOne);
@@ -455,7 +522,7 @@ define(["List"], function (List) {
                 }
             });
         });
-        describe("List.prototype.sort", function () {
+        describe("List.prototype.sortByNumber", function () {
             beforeEach(function () {
                 list = new List({ idProperty: "id" });
             });

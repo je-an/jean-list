@@ -62,6 +62,17 @@ Add an element to the list
 **Returns**
 - `Boolean` - True, if the element could be added
 
+
+### List.prependElement(element) 
+
+Prepend an element to the list
+
+**Parameters**
+- **element**: `Object` - element, which shall be prepended to the list
+
+**Returns**
+- `Boolean` - True, if the element could be prepended
+
 ### List.getElement(id) 
 
 Provides an element from the list based on its id
